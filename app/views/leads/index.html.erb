@@ -1,0 +1,24 @@
+<div id="leads-index">
+  <h2>My Leads</h2>
+  <ul>
+    <li v-for="lead in leads">{{ lead.name }} {{ lead.email }} {{ lead.notes }} </li>
+  </ul>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Company</th>
+      <th>Job Title</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Current Step</th>
+    </tr>
+    <tr v-for="lead in leads">
+      <td> {{ lead.name }}</td>
+      <td> {{ lead.company }}</td>
+      <td> {{ lead.job_title }}</td>
+      <td> {{ lead.email }}</td>
+      <td> {{ lead.phone }}</td>
+      <td> {{ lead.current_step }}</td>
+    </tr>
+  </table>
+</div>
