@@ -1,0 +1,48 @@
+<h2>Edit User Profile</h2>
+
+<%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :grad_date %><br />
+    <%= f.text_field :grad_date, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :grad_city %><br />
+    <%= f.text_field :grad_city, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_city %><br />
+    <%= f.text_field :current_city, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_state %><br />
+    <%= f.text_field :current_state, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :timezone %><br />
+    <%= f.collection_select :timezone, ActiveSupport::TimeZone.us_zones, :name, :to_s %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
