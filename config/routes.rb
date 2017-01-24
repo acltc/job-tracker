@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :users
   resources :admins
   resources :leads
+  resources :statuses
 end

@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <dl class="dl-horizontal">
+        <dt>Name: </dt>
+        <dd><%= @lead.name %></dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Job Title: </dt>
+        <dd><%= @lead.job_title %></dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Company: </dt>
+        <dd><%= @lead.company %></dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Email: </dt>
+        <dd><%= @lead.email %></dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Phone: </dt>
+        <dd><%= @lead.phone %></dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Notes: </dt>
+        <dd><%= @lead.notes%></dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Last Updated: </dt>
+        <dd><%= @lead.last_action.strftime("%b %e, %Y -- %l:%M%P")%></dd>
+      </dl>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-2">
+    <div class="status-panel-wrap">
+      <div class="well">
+        <%= link_to "", "#", data: {toggle: "modal", target: "#Connect"} %>
+        <h3>Connected on LinkedIn</h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="well">
+      <%= link_to "", "#", data: {toggle: "modal", target: "#Email"} %>
+      <h3>Email Sent</h3>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="well">
+      <h3>Set Meeting</h3>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="well">
+      <h3>Set Interview</h3>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="well">
+      <h3>Job Offer</h3>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+
+
+<div id="Connect" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Connected On LinkedIn</h3>
+      </div>
+      <div class="modal-body">
+        <%= form_tag '/statuses', method: :post do %>
+          <div>
+            <%= hidden_field_tag :name, "Connected on LinkedIn" %>
+            <%= hidden_field_tag :lead_id, @lead.id %>
+          </div>
+          <div>
+            <%= label_tag :notes %>
+            <%= text_area_tag :notes %>
+          </div>
+          <div>
+            <%= label_tag :date, "Date LinkedIn Invite Sent" %>
+            <%= datetime_select(:date, :date) %>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <%= submit_tag "Submit", class: "btn btn-info"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="Email" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Email Sent</h3>
+      </div>
+      <div class="modal-body">
+        <%= form_tag '/statuses', method: :post do %>
+          <div>
+            <%= hidden_field_tag :name, "Email Sent" %>
+            <%= hidden_field_tag :lead_id, @lead.id %>
+          </div>
+          <div>
+            <%= label_tag :notes %>
+            <%= text_area_tag :notes %>
+          </div>
+          <div>
+            <%= label_tag :date, "Date LinkedIn Invite Sent" %>
+            <%= datetime_select(:date, :date) %>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <%= submit_tag "Submit", class: "btn btn-info"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
