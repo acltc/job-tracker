@@ -1,0 +1,30 @@
+<h1>Edit Lead</h1>
+<%= form_tag "/leads/#{@lead.id}", method: :patch do %>
+  <div>
+    <%= label_tag :name %>
+    <%= text_field_tag :name, @lead.name %>
+  </div>
+  <div>
+    <%= label_tag :job_title %>
+    <%= text_field_tag :job_title, @lead.job_title %>
+  </div>
+  <div>
+    <%= label_tag :company %>
+    <%= text_field_tag :company, @lead.company %>
+  </div>
+  <div>
+    <%= label_tag :email %>
+    <%= text_field_tag :email, @lead.email %>
+  </div>
+  <div>
+    <%= label_tag :phone %>
+    <%= text_field_tag :phone, @lead.phone %>
+  </div>
+  <div>
+    <%= label_tag :notes %>
+    <%= text_area_tag :notes, @lead.notes %>
+  </div>
+  <div>
+    <%= submit_tag "Submit" %>
+  </div>
+<% end %>
