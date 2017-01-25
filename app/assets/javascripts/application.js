@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require vue
+//= require lodash.min
 //= require_tree .

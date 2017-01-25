@@ -6,6 +6,8 @@ class LeadsController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
+    @lead = Lead.new
   end
 
   def create
@@ -29,7 +31,7 @@ class LeadsController < ApplicationController
       )
       if status.save
         flash[:success] = "Lead was successfully saved."
-        redirect_to user_lead_path(@user)
+        redirect_to user_lead_path(@user, @lead)
       else
         @lead.destroy
         flash[:danger] = "There was an error while saving your lead. Please try again."
