@@ -8,3 +8,4 @@ json.phone lead.phone
 json.notes lead.notes
 json.last_action lead.last_action
 json.archive lead.archive
+json.current_step lead.current_step

@@ -3,21 +3,24 @@
   <ul>
     <li v-for="lead in leads">{{ lead.name }} {{ lead.email }} {{ lead.notes }} </li>
   </ul>
+  <input v-model="searchField">
   <table>
     <tr>
-      <th @click="orderByField">Name</th>
-      <th>Company</th>
-      <th>Job Title</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Current Step</th>
+      <th @click="orderByField('name')">Name</th>
+      <th @click="orderByField('company')">Company</th>
+      <th @click="orderByField('job_title')">Job Title</th>
+      <th @click="orderByField('email')">Email</th>
+      <th @click="orderByField('phone')">Phone</th>
+      <th @click="orderByField('notes')">notes</th>
+      <th @click="orderByField('current_step')">Current Step</th>
     </tr>
-    <tr v-for="lead in leads">
+    <tr v-for="lead in tableFilter">
       <td> {{ lead.name }}</td>
       <td> {{ lead.company }}</td>
       <td> {{ lead.job_title }}</td>
       <td> {{ lead.email }}</td>
       <td> {{ lead.phone }}</td>
+      <td> {{ lead.notes }}</td>
       <td> {{ lead.current_step }}</td>
     </tr>
   </table>
