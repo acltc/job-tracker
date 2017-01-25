@@ -41,11 +41,10 @@ $(document).ready(function() {
         } else {
           this.sortOrder = "desc";
         }
-        console.log(this.sortOrder);
       },
       findBy: function (list, value, column) {
         return list.filter(function (item) {
-          return item[column].indexOf(value) !== -1;
+          return item[column].toLowerCase().indexOf(value.toLowerCase()) !== -1;
         })
       }
     }
