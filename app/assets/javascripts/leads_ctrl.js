@@ -3,7 +3,6 @@ $(document).ready(function() {
     el: '#leads-index',
     data: {
       leads: [],
-      numbers: ["1", "2", "3"],
       sortOrder: "desc",
       searchField: ""
     },

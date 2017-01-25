@@ -2,18 +2,12 @@ class Status < ApplicationRecord
   belongs_to :lead
 
   def progress_level
-    if name == "Sent Invite on LinkedIn"
-      return 0
-    elsif name == "LinkedIn Invite Accepted"
-      return 1        
-    elsif name == "Sent Email"
-      return 2
-    elsif name == "Set Meeting"
-      return 3
-    elsif name == "Interview Set"
-      return 4
-    elsif name == "Job Offer"
-      return 5        
+    steps = ["Sent Invite on LinkedIn", "LinkedIn Invite Accepted", "Sent Email", "Set Meeting", "Interview Set", "Interview 2", "Interview 3", "Interview 4", "Interview 5", "Interview 6", "Interview 7", "Interview 8", "Job Offer"]
+    
+    steps.each_with_index do |step, index|
+      if name == step
+        return index 
+      end
     end
   end
 end
