@@ -1,8 +1,5 @@
 <div id="leads-index">
   <h2>My Leads</h2>
-  <ul>
-    <li v-for="lead in leads">{{ lead.name }} {{ lead.email }} {{ lead.notes }} </li>
-  </ul>
   <input v-model="searchField">
   <table>
     <tr>
@@ -12,16 +9,16 @@
       <th @click="orderByField('email')">Email</th>
       <th @click="orderByField('phone')">Phone</th>
       <th @click="orderByField('notes')">notes</th>
-      <th @click="orderByField('current_step')">Current Step</th>
+      <th @click="orderCurrentStep()">Current Step</th>
     </tr>
     <tr v-for="lead in tableFilter">
       <td><a v-bind:href="urlBuilder(lead.id)">{{ lead.name }}</a></td>
-      <td> {{ lead.company }}</td>
-      <td> {{ lead.job_title }}</td>
-      <td> {{ lead.email }}</td>
-      <td> {{ lead.phone }}</td>
-      <td> {{ lead.notes }}</td>
-      <td> {{ lead.current_step }}</td>
+      <td>{{ lead.company }}</td>
+      <td>{{ lead.job_title }}</td>
+      <td>{{ lead.email }}</td>
+      <td>{{ lead.phone }}</td>
+      <td>{{ lead.notes }}</td>
+      <td>{{ lead.current_step }}</td>
     </tr>
   </table>
 </div>

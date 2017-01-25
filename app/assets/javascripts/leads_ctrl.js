@@ -32,6 +32,15 @@ $(document).ready(function() {
         }
           return this.leads;
       },
+      orderCurrentStep: function() {
+        this.toggleSortOrder();
+        if (this.sortOrder === "desc") {
+          this.leads = _.orderBy(this.leads, [lead => lead["progress_level"]], ['desc']);
+        } else {
+          this.leads = _.orderBy(this.leads, [lead => lead["progress_level"]], ['asc']);
+        }
+          return this.leads;
+      },
       toggleSortOrder: function() {
         if (this.sortOrder === "desc"){
           this.sortOrder = "asc";
