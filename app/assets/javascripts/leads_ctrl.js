@@ -19,7 +19,7 @@ $(document).ready(function() {
     },
     computed: {
       tableFilter: function () {
-        return this.findBy(this.leads, this.searchField, ['name', 'job_title'])
+        return this.findBy(this.leads, this.searchField, ['name', 'company', 'job_title', 'email', 'phone', 'notes', 'current_step' ])
       }
     },
     methods: {
