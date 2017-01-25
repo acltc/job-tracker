@@ -2,6 +2,7 @@ class LeadsController < ApplicationController
   before_action :authenticate_authorized_user
 
   def index
+    @user = User.find(params[:user_id])
     gon.user_id = params[:user_id]
   end
 

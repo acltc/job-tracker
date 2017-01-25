@@ -18,11 +18,8 @@ $(document).ready(function() {
       })
     },
     computed: {
-      orderedLeads: function() {
-        return _.orderBy(this.leads, 'name')
-      },
       tableFilter: function () {
-        return this.findBy(this.leads, this.searchField, 'name')
+        return this.findBy(this.leads, this.searchField, ['name', 'job_title'])
       }
     },
     methods: {
@@ -44,8 +41,20 @@ $(document).ready(function() {
       },
       findBy: function (list, value, column) {
         return list.filter(function (item) {
-          return item[column].toLowerCase().indexOf(value.toLowerCase()) !== -1;
+          var searchMatch = false;
+          
+          for(var i = 0; i < column.length; i++) {
+            var itemAttribute = column[i];
+            var result = item[itemAttribute].toLowerCase().indexOf(value.toLowerCase()) !== -1;
+            if(result) {
+              searchMatch = true;
+            }
+          }
+          return searchMatch;
         })
+      },
+      urlBuilder: function(leadId) {
+        return "/users/" + gon.user_id + "/leads/" + leadId;
       }
     }
   })

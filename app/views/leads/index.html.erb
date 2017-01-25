@@ -15,7 +15,7 @@
       <th @click="orderByField('current_step')">Current Step</th>
     </tr>
     <tr v-for="lead in tableFilter">
-      <td> {{ lead.name }}</td>
+      <td><a v-bind:href="urlBuilder(lead.id)">{{ lead.name }}</a></td>
       <td> {{ lead.company }}</td>
       <td> {{ lead.job_title }}</td>
       <td> {{ lead.email }}</td>
