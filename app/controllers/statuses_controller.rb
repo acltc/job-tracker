@@ -11,10 +11,10 @@ class StatusesController < ApplicationController
     if @status_to_update
       if @status_to_update.update(notes: params[:notes])
         flash[:success] = "Your lead status has been successfully updated."
-        redirect_to "/leads/#{@lead.id}"
+        redirect_to user_lead_path(@lead.user_id, @lead.id)
       else
         flash[:danger] = "An error occured when updating your lead status. Please try again."
-        redirect_to "/leads/#{@lead.id}"
+        redirect_to user_lead_path(@lead.user_id, @lead.id)
       end
     else
       if last_active_status.update(active: false)
@@ -27,18 +27,18 @@ class StatusesController < ApplicationController
         if status.save
           if @lead.update(last_action: datetime)
             flash[:success] = "Your lead status has been successfully updated."
-            redirect_to "/leads/#{@lead.id}"
+            redirect_to user_lead_path(@lead.user_id, @lead.id)
           else
             flash[:danger] = "An error occured when updating your lead status. Please try again."
-            redirect_to "/leads/#{@lead.id}"
+            redirect_to user_lead_path(@lead.user_id, @lead.id)
           end
         else
           flash[:danger] = "An error occured when updating your lead status. Please try again."
-          redirect_to "/leads/#{@lead.id}"
+          redirect_to user_lead_path(@lead.user_id, @lead.id)
         end
       else
         flash[:danger] = "An error occured when updating your lead status. Please try again."
-        redirect_to "/leads/#{@lead.id}"
+        redirect_to user_lead_path(@lead.user_id, @lead.id)
       end
     end
   end

@@ -63,7 +63,7 @@ class LeadsController < ApplicationController
       notes: params[:notes]
     )
       flash[:success] = "Lead has been successfully updated."
-      redirect_to "/leads/#{@lead.id}"
+      redirect_to user_lead_path(@user, @lead)
     else
       flash[:danger] = "There was an error while saving your lead. Please try again."
       render :edit

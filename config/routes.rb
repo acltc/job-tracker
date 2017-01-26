@@ -17,6 +17,5 @@ Rails.application.routes.draw do
   end
 
   resources :admins
-  resources :leads
   resources :statuses
 end
