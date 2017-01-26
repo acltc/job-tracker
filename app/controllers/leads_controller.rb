@@ -6,6 +6,11 @@ class LeadsController < ApplicationController
     gon.user_id = params[:user_id]
   end
 
+  def show
+    @lead = Lead.find(params[:id])
+    last_active_status = Status.where("lead_id = ? AND active = ?", @lead.id, true)
+  end
+
   def new
   end
 
@@ -58,7 +63,7 @@ class LeadsController < ApplicationController
       notes: params[:notes]
     )
       flash[:success] = "Lead has been successfully updated."
-      redirect_to "/leads/#{@lead.id}"
+      redirect_to user_lead_path(@user, @lead)
     else
       flash[:danger] = "There was an error while saving your lead. Please try again."
       render :edit

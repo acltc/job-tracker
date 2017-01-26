@@ -1,6 +1,46 @@
 // Place all the styles related to the leads controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div.status-panel-wrap {
+  text-align: center;
+}
+
+
+div.status-panel-wrap p {
+  color: #191b1f;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+div.status-panel-wrap i {
+  padding-top: 20px;
+  font-size: 10em;
+}
+
+div.status-panel-wrap a {
+  border-width: 2px;
+  border-color: #fff;
+  position: absolute;
+  width: 100%;
+  height: 100% !important;
+  top: 0;
+  left: 0;
+  text-decoration: none;
+  z-index: 10;
+  background-color: white;
+  opacity: 0;
+  filter: alpha(opacity=1);
+}
+
+div.status-panel-wrap .well:hover {
+  background-color: #006ff5;
+  border-color: transparent;
+  color: #fff;
+
+  p {
+    color: #fff;
+  }
+}
 
 label {
   display: inline-block;
