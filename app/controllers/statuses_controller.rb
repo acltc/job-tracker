@@ -2,7 +2,7 @@ class StatusesController < ApplicationController
 
   def create
     @lead = Lead.find(params[:lead_id].to_i)
-    last_active_status = Status.where("lead_id = ? AND active = ?", @lead.id, true)
+    last_active_status = Status.where("lead_id = ? AND active = ?", @lead.id, true).last
 
     datetime = params[:date]["date(1i)"] + "-" + params[:date]["date(2i)"] + "-" + params[:date]["date(3i)"] + " " + params[:date]["date(4i)"] + ":" + params[:date]["date(5i)"]
 
