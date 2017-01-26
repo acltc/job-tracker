@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:show, :edit, :update]
+  before_action :authenticate_admin!
+  before_action :set_admin, only: [:edit, :update]
   
   def show
   end
