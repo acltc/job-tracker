@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery-ui
 //= require turbolinks
 //= require vue
+//= require lodash.min
 //= require_tree .
