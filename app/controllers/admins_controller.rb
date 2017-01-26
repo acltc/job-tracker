@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  before_action :setup_admin, only: [:show, :edit, :update]
+  before_action :set_admin, only: [:show, :edit, :update]
   
   def show
   end
@@ -30,8 +30,13 @@ class AdminsController < ApplicationController
 
   private
 
-  def setup_admin
+  def set_admin
     @admin = Admin.find(params[:id])
+
+    unless current_admin == @admin.id
+      flash[:warning] = "You are not authorized to view this page"
+      redirect_to root_path
+    end
   end
 
   def admin_params

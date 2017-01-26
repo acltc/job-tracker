@@ -1,17 +1,15 @@
 class LeadsController < ApplicationController
   before_action :authenticate_authorized_user
+  before_action :set_user
 
   def index
-    @user = User.find(params[:user_id])
     gon.user_id = params[:user_id]
   end
 
   def new
-    @user = User.find(params[:user_id])
   end
 
   def create
-    @user = User.find(params[:user_id])
     datetime = params[:lead]["date(1i)"] + "-" + params[:lead]["date(2i)"] + "-" + params[:lead]["date(3i)"] + " " + params[:lead]["date(4i)"] + ":" + params[:lead]["date(5i)"]
     @lead = Lead.new(
     # change user_id when Devise is installed
@@ -64,6 +62,17 @@ class LeadsController < ApplicationController
     else
       flash[:danger] = "There was an error while saving your lead. Please try again."
       render :edit
+    end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:user_id])
+
+    unless current_admin || current_user.id == @user.id
+      flash[:warning] = "You are not authorized to view this page"
+      redirect_to root_path
     end
   end
 end
