@@ -6,9 +6,9 @@ class StatusesController < ApplicationController
 
     datetime = params[:date]["date(1i)"] + "-" + params[:date]["date(2i)"] + "-" + params[:date]["date(3i)"] + " " + params[:date]["date(4i)"] + ":" + params[:date]["date(5i)"]
 
-    @status_to_update = Status.where("lead_id = ? AND name = ?", @lead.id, params[:name])
+    @status_to_update = Status.where("lead_id = ? AND name = ?", @lead.id, params[:name]).last
 
-    if @status_to_update != nil
+    if @status_to_update
       if @status_to_update.update(notes: params[:notes])
         flash[:success] = "Your lead status has been successfully updated."
         redirect_to "/leads/#{@lead.id}"
