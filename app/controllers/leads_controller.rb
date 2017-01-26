@@ -8,12 +8,11 @@ class LeadsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    @lead = Lead.new
   end
 
   def create
     @user = User.find(params[:user_id])
-    datetime = params[:date]["date(1i)"] + "-" + params[:date]["date(2i)"] + "-" + params[:date]["date(3i)"] + " " + params[:date]["date(4i)"] + ":" + params[:date]["date(5i)"]
+    datetime = params[:lead]["date(1i)"] + "-" + params[:lead]["date(2i)"] + "-" + params[:lead]["date(3i)"] + " " + params[:lead]["date(4i)"] + ":" + params[:lead]["date(5i)"]
     @lead = Lead.new(
     # change user_id when Devise is installed
       user_id: @user.id,
