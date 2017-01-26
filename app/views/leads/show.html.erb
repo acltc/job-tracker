@@ -37,37 +37,48 @@
   <div class="col-md-2">
     <div class="status-panel-wrap">
       <div class="well">
-        <%= link_to "", "#", data: {toggle: "modal", target: "#Connect"} %>
+        <%= link_to "", "#", data: {toggle: "modal", target: "#Connect-#{@lead.id}"} %>
         <h3>Connected on LinkedIn</h3>
       </div>
     </div>
   </div>
   <div class="col-md-2">
-    <div class="well">
-      <%= link_to "", "#", data: {toggle: "modal", target: "#Email"} %>
-      <h3>Email Sent</h3>
+    <div class="status-panel-wrap">
+      <div class="well">
+        <%= link_to "", "#", data: {toggle: "modal", target: "#Email-#{@lead.id}"} %>
+        <h3>Email Sent</h3>
+      </div>
     </div>
   </div>
   <div class="col-md-2">
-    <div class="well">
-      <h3>Set Meeting</h3>
+    <div class="status-panel-wrap">
+      <div class="well">
+        <%= link_to "", "#", data: {toggle: "modal", target: "#Meeting-#{@lead.id}"} %>
+        <h3>Set Meeting</h3>
+      </div>
     </div>
   </div>
   <div class="col-md-2">
-    <div class="well">
-      <h3>Set Interview</h3>
+    <div class="status-panel-wrap">
+      <div class="well">
+        <%= link_to "", "#", data: {toggle: "modal", target: "#Interview-#{@lead.id}"} %>
+        <h3>Set Interview</h3>
+      </div>
     </div>
   </div>
   <div class="col-md-2">
-    <div class="well">
-      <h3>Job Offer</h3>
+    <div class="status-panel-wrap">
+      <div class="well">
+        <%= link_to "", "#", data: {toggle: "modal", target: "#JobOffer-#{@lead.id}"} %>
+        <h3>Job Offer</h3>
+      </div>
     </div>
   </div>
   <div class="col-md-1"></div>
 </div>
 
 
-<div id="Connect" class="modal fade" role="dialog">
+<div id="Connect-<%= @lead.id %>" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -76,15 +87,15 @@
       <div class="modal-body">
         <%= form_tag '/statuses', method: :post do %>
           <div>
-            <%= hidden_field_tag :name, "Connected on LinkedIn" %>
+            <%= hidden_field_tag :name, "LinkedIn Invite Accepted" %>
             <%= hidden_field_tag :lead_id, @lead.id %>
           </div>
-          <div>
+          <div class="form-group">
             <%= label_tag :notes %>
             <%= text_area_tag :notes %>
           </div>
           <div>
-            <%= label_tag :date, "Date LinkedIn Invite Sent" %>
+            <%= label_tag :date, "Date Invite Accepted" %>
             <%= datetime_select(:date, :date) %>
           </div>
       </div>
@@ -97,7 +108,7 @@
   </div>
 </div>
 
-<div id="Email" class="modal fade" role="dialog">
+<div id="Email-<%= @lead.id %>" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -106,7 +117,7 @@
       <div class="modal-body">
         <%= form_tag '/statuses', method: :post do %>
           <div>
-            <%= hidden_field_tag :name, "Email Sent" %>
+            <%= hidden_field_tag :name, "Sent Email" %>
             <%= hidden_field_tag :lead_id, @lead.id %>
           </div>
           <div>
@@ -114,7 +125,97 @@
             <%= text_area_tag :notes %>
           </div>
           <div>
-            <%= label_tag :date, "Date LinkedIn Invite Sent" %>
+            <%= label_tag :date, "Date Email Sent" %>
+            <%= datetime_select(:date, :date) %>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <%= submit_tag "Submit", class: "btn btn-info"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="Meeting-<%= @lead.id %>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Set Meeting</h3>
+      </div>
+      <div class="modal-body">
+        <%= form_tag '/statuses', method: :post do %>
+          <div>
+            <%= hidden_field_tag :name, "Set Meeting" %>
+            <%= hidden_field_tag :lead_id, @lead.id %>
+          </div>
+          <div>
+            <%= label_tag :notes %>
+            <%= text_area_tag :notes %>
+          </div>
+          <div>
+            <%= label_tag :date, "Date Meeting Set" %>
+            <%= datetime_select(:date, :date) %>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <%= submit_tag "Submit", class: "btn btn-info"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="Interview-<%= @lead.id %>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Set Interview</h3>
+      </div>
+      <div class="modal-body">
+        <%= form_tag '/statuses', method: :post do %>
+          <div>
+            <%= hidden_field_tag :name, "Interview Set" %>
+            <%= hidden_field_tag :lead_id, @lead.id %>
+          </div>
+          <div>
+            <%= label_tag :notes %>
+            <%= text_area_tag :notes %>
+          </div>
+          <div>
+            <%= label_tag :date, "Date Job Interview Set" %>
+            <%= datetime_select(:date, :date) %>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <%= submit_tag "Submit", class: "btn btn-info"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="JobOffer-<%= @lead.id %>" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Job Offer Made</h3>
+      </div>
+      <div class="modal-body">
+        <%= form_tag '/statuses', method: :post do %>
+          <div>
+            <%= hidden_field_tag :name, "Job Offer" %>
+            <%= hidden_field_tag :lead_id, @lead.id %>
+          </div>
+          <div>
+            <%= label_tag :notes %>
+            <%= text_area_tag :notes %>
+          </div>
+          <div>
+            <%= label_tag :date, "Date Job Offer Made" %>
             <%= datetime_select(:date, :date) %>
           </div>
       </div>

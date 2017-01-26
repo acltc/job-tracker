@@ -1,6 +1,7 @@
 class LeadsController < ApplicationController
   def show
     @lead = Lead.find(params[:id])
+    last_active_status = Status.where("lead_id = ? AND active = ?", @lead.id, true)
   end
 
   def new
