@@ -1,5 +1,5 @@
 <h1>New Lead</h1>
-<%= form_tag '/leads', method: :post do %>
+<%= form_tag "/users/#{ @user.id }/leads", method: :post do %>
   <div>
     <%= label_tag :name %>
     <%= text_field_tag :name %>
@@ -21,12 +21,12 @@
     <%= text_field_tag :phone %>
   </div>
   <div>
-    <%= label_tag :notes %>
-    <%= text_area_tag :notes %>
+    <%= label_tag :date, "Contact initated on: " %><span title="Initial contact includes LinkedIn Invite Sent, introduction email, Meet-up, etc. Please specify form of contact in the notes."> ?</span>
+    <%= datetime_select(:lead, :date, default: Time.zone.now) %>
   </div>
   <div>
-    <%= label_tag :date, "Date LinkedIn Invite Sent" %>
-    <%= datetime_select(:date, :date) %>
+    <%= label_tag :notes %>
+    <%= text_area_tag :notes %>
   </div>
   <div>
     <%= submit_tag "Submit" %>

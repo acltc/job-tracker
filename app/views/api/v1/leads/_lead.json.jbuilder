@@ -1,0 +1,12 @@
+json.id lead.id
+json.user_id lead.user_id
+json.name lead.name
+json.company lead.company
+json.job_title lead.job_title
+json.email lead.email
+json.phone lead.phone
+json.notes lead.notes
+json.last_action lead.last_action
+json.archive lead.archive
+json.current_step lead.current_step
+json.progress_level lead.progress_level

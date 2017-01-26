@@ -1,13 +1,21 @@
 class LeadsController < ApplicationController
+  before_action :authenticate_authorized_user
+
+  def index
+    @user = User.find(params[:user_id])
+    gon.user_id = params[:user_id]
+  end
+
   def new
+    @user = User.find(params[:user_id])
   end
 
   def create
-    datetime = params[:date]["date(1i)"] + "-" + params[:date]["date(2i)"] + "-" + params[:date]["date(3i)"] + " " + params[:date]["date(4i)"] + ":" + params[:date]["date(5i)"]
-
+    @user = User.find(params[:user_id])
+    datetime = params[:lead]["date(1i)"] + "-" + params[:lead]["date(2i)"] + "-" + params[:lead]["date(3i)"] + " " + params[:lead]["date(4i)"] + ":" + params[:lead]["date(5i)"]
     @lead = Lead.new(
     # change user_id when Devise is installed
-      user_id: 1,
+      user_id: @user.id,
       name: params[:name],
       job_title: params[:job_title],
       company: params[:company],
@@ -24,7 +32,7 @@ class LeadsController < ApplicationController
       )
       if status.save
         flash[:success] = "Lead was successfully saved."
-        redirect_to "/leads/#{@lead.id}"
+        redirect_to user_lead_path(@user, @lead)
       else
         @lead.destroy
         flash[:danger] = "There was an error while saving your lead. Please try again."
