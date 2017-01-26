@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_authorized_user
-    if current_admin || current_user
-    else
+    unless current_admin || current_user
       flash[:warning] = "You do not have access to that page!"
       redirect_to "/"
     end

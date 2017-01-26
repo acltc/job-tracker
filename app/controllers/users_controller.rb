@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :setup_user, only: [:show, :edit, :update]
+  before_action :authenticate_authorized_user
+  before_action :set_user, only: [:show, :edit, :update]
   
   def show
   end
@@ -30,8 +31,13 @@ class UsersController < ApplicationController
 
   private
 
-  def setup_user
+  def set_user
     @user = User.find(params[:id])
+
+    unless current_admin || current_user.id == @user.id
+      flash[:warning] = "You are not authorized to view this page"
+      redirect_to root_path
+    end
   end
 
   def user_params
